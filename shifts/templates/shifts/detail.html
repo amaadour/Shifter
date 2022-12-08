@@ -1,0 +1,16 @@
+{% extends 'shifts/layout.html' %}
+{% block title %}{{object.title}}{% endblock title %}
+{% block body %}
+    <div class="detail">
+        <h1>{{object.title}}</h1>
+        <ul>{% if days %}
+                {% for day in days %}
+                <li>{{day.date}}: {{day.printStaff}}</li>
+                {% endfor %}
+            {% else %}
+                Nothing to see here
+            {% endif %}
+            
+        </ul>
+    </div>
+{% endblock body %}

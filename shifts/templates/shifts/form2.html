@@ -1,0 +1,44 @@
+{% extends 'shifts/layout.html' %}
+{% block title %}Fill Arrangement Information{% endblock title %}
+{% block body %}
+    <form method="POST">{% csrf_token %}
+        <div>
+    {% for form in dayFormSet %}
+        {{form.as_p}}
+    {% endfor %}
+        </div>
+        {{ staffFormSet.management_form }}
+        <div id="empty-form" class="hidden">
+            {{ staffFormSet.empty_form }}
+        </div>
+        <div id="staff-form-list">
+
+        </div>
+        <button id="add-more" type="button">Add more</button>
+        
+    <input type="submit" value="Save">
+    </form>
+    <script>
+        const addMoreBtn = document.getElementById('add-more')
+        const totalNewForms = document.getElementById('id_form-TOTAL_FORMS') 
+        addMoreBtn.addEventListener('click',addNewForm)
+        function addNewForm(event){
+            if (event){
+                event.preventDefault()
+            }
+            const currentIngredientForms = document.getElementsByClassName('staff-form')
+            const currentFormCount = currentIngredientForms.length
+            console.log(currentIngredientForms.length)
+            const formCopyTarget = document.getElementById('staff-form-list')
+            const emptyFormElement = document.getElementById('empty-form').cloneNode(true)
+            emptyFormElement.setAttribute('class','staff-form')
+            emptyFormElement.setAttribute('id',`form-${currentFormCount}-staff`)
+            const regex = new RegExp('__prefix__', 'g')
+            emptyFormElement.innerHTML = emptyFormElement.innerHTML.replace(regex,currentFormCount)
+            totalNewForms.setAttribute('value',currentFormCount+1)
+            formCopyTarget.append(emptyFormElement)
+
+        }
+
+    </script>
+{% endblock body %} 

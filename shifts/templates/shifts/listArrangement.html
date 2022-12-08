@@ -1,0 +1,12 @@
+{% extends 'shifts/layout.html' %}
+{% block title %}Arrangement List{% endblock title %}
+{% block body %}
+    <div class="list-view">
+        <h1>Your Arrangements</h1>
+        <ul>        
+            {% for object in object_list %}
+            <li><a href="{% url 'detail' object.id %}">{{object.title}}</a></li>
+            {% endfor %}
+        </ul>        
+    </div>
+{% endblock body %}

@@ -1,0 +1,11 @@
+{% extends 'shifts/layout.html' %}
+{% block title %}multiply{% endblock title %}
+{% block body %}
+<form method="POST" action="{% url 'multiply' %}">{% csrf_token %}
+    <input readonly type="number" value="{{sum}}" name="sum">
+    <label> x </label>
+    <input type="number" name="factor">
+    <label> = {{product}}</label>
+    <p><input type="submit" value="calculate"></p>
+</form>
+{% endblock body %}

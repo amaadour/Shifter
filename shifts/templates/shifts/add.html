@@ -1,0 +1,10 @@
+{% extends 'shifts/layout.html' %}
+{% block body %}
+<form method="POST" action="{% url 'multiply' %}">{% csrf_token %}
+    {% for form in formSet %}
+        {{form.as_p}}
+    {% endfor %}
+    <input type="submit" value="calculate">
+</form>
+<h3>sum={{sum}}</h3>
+{% endblock body %}
