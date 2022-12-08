@@ -10,8 +10,8 @@ def index(request):
     return render(request,'shifts/index.html')
 
 def addStaff(request):
-    
     return render(request,'shifts/addStaff.html',context={})
+    
 def form2(request,pk):  
     query = get_object_or_404(Arrangement,pk=pk)
     if query.is_filled:
