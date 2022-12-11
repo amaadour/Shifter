@@ -56,14 +56,16 @@ def form2(request,pk):
     return render(request,"shifts/form2.html",context)    
 
 def detailView(request,pk):
-    query = get_object_or_404(Arrangement,pk=pk)
+    query = get_object_or_404(Arrangement,pk=pk);
     daySet = Day.objects.filter( arrangement=query)
     print(list(daySet))
     context = {
         "object":query,
         "days":daySet
     }
+    
     return render(request,"shifts/detail.html",context)
+
 
 
 class ArrangementCreateView(CreateView):
